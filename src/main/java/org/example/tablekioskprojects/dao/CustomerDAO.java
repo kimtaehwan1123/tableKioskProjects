@@ -1,9 +1,9 @@
-package org.example.tablekioskproject1.dao;
+package org.example.tablekioskprojects.dao;
 
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
-import org.example.tablekioskproject1.common.ConnectionUtil;
-import org.example.tablekioskproject1.vo.MenuVO;
+import org.example.tablekioskprojects.common.ConnectionUtil;
+import org.example.tablekioskprojects.vo.MenuVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,6 @@ import java.util.List;
 
 @Log4j2
 public enum CustomerDAO {
-
     INSTANCE;
 
     CustomerDAO() {}
@@ -95,5 +94,31 @@ public enum CustomerDAO {
         }
 
         return menuList;
+    }
+
+    public MenuVO getMenuById(int mno) throws Exception {
+        log.info("getMenuById called");
+        MenuVO menu = null;
+
+        String sql = "SELECT * FROM tbl_k_menu WHERE mno = ?";
+
+        @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
+        @Cleanup PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, mno);
+        @Cleanup ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            menu = MenuVO.builder()
+                    .mno(rs.getInt("mno"))
+                    .categoryId(rs.getInt("category_id"))
+                    .name(rs.getString("name"))
+                    .description(rs.getString("description"))
+                    .price(rs.getBigDecimal("price"))
+                    .is_sold_out(rs.getBoolean("is_sold_out"))
+                    .isRecommend(rs.getBoolean("is_recommend"))
+                    .delflag(rs.getBoolean("delflag"))
+                    .build();
+        }
+
+        return menu;
     }
 }

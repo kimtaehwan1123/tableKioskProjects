@@ -1,4 +1,4 @@
-package org.example.tablekioskproject1.common;
+package org.example.tablekioskprojects.common;
 
 public class StringUtil {
 

@@ -1,4 +1,4 @@
-package org.example.tablekioskproject1.common;
+package org.example.tablekioskprojects.common;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

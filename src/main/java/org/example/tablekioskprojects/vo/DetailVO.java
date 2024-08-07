@@ -1,4 +1,4 @@
-package org.example.tablekioskproject1.vo;
+package org.example.tablekioskprojects.vo;
 
 import lombok.*;
 
@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Setter
 
 public class DetailVO {
     private Integer ono;

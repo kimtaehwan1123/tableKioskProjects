@@ -1,4 +1,4 @@
-package org.example.tablekioskproject1.vo;
+package org.example.tablekioskprojects.vo;
 
 import lombok.*;
 
